@@ -8,6 +8,8 @@ Target: OWASP Juice Shop (local Docker instance). Six server-side findings spann
 The login form concatenates user input into a SQL query. Payload `' OR 1=1--` in the email field bypasses authentication entirely and logs in as the first user in the database (an admin account), verified both via Burp Suite and directly in the UI.
 *Fix:* parameterized queries/prepared statements, server-side input validation, least-privilege DB accounts, generic error messages.
 
+![Burp Suite: SQL injection payload in the login request returns an admin session token](images/sqli-login-bypass.png)
+
 **2. SQL injection — search endpoint (filter bypass)**
 `GET /rest/products/search?q='))--` comments out the `deletedAt IS NULL` clause of the underlying query, returning soft-deleted products that should not be visible.
 *Fix:* same as above — never build queries via string concatenation; use an ORM's parameterized query methods.
@@ -19,6 +21,8 @@ The login form concatenates user input into a SQL query. Payload `' OR 1=1--` in
 **4. Broken access control — privilege escalation via registration**
 The `POST /api/Users` registration endpoint trusts a client-supplied `role` field. Adding `"role": "admin"` to the registration payload in Burp Suite creates a full administrator account with no special privileges required.
 *Fix:* assign roles server-side only, strict schema validation rejecting unexpected fields, authorization checks on any role-changing operation.
+
+![Juice Shop confirming the 'Admin Registration' challenge was solved](images/admin-registration.png)
 
 **5. Missing rate limiting on login**
 `/rest/user/login` has no attempt limit, lockout, or CAPTCHA, allowing unlimited automated login attempts. Demonstrated with Burp Intruder against a small password list, successfully identifying a valid credential by response length/status.
