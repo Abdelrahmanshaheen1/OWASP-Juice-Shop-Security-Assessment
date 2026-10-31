@@ -13,6 +13,12 @@ A two-part web application security assessment of [OWASP Juice Shop](https://owa
 
 Each part's `README.md` is a condensed summary; `report-original.pdf` is the full submitted report with screenshots and Burp Suite evidence for every finding.
 
+## Example finding
+
+SQL injection on the login form: the payload `' or 1=1 --` in the email field returns a valid session for the first user in the database (the admin account). Full write-up in [`server-side/`](server-side/).
+
+![Burp Suite request and response for the SQL injection login bypass](server-side/images/sqli-login-bypass.png)
+
 ## Methodology
 
 For each vulnerability: a working proof-of-concept was built and verified (via browser devtools and Burp Suite proxy/repeater), the root cause was identified, and concrete mitigations were documented — mirroring the structure of a professional web application penetration test report.
