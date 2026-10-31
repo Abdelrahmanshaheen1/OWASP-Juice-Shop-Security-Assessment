@@ -1,6 +1,15 @@
 # Client-Side Assessment
 
-Target: OWASP Juice Shop (local Docker instance). Six client-side findings, each with a working proof-of-concept and mitigations.
+Target: OWASP Juice Shop (local Docker instance). Six client-side findings, each with a working proof-of-concept and mitigations. See the [root README](../README.md) for scope and methodology.
+
+| # | Finding | Indicative OWASP Top 10 |
+|---|---|---|
+| 1 | DOM-based XSS (search bar) | A03 Injection |
+| 2 | Reflected XSS (search query parameter) | A03 Injection |
+| 3 | Stored XSS (complaint/feedback form) | A03 Injection |
+| 4 | CSRF (password and username change) | A01 Broken Access Control |
+| 5 | Clickjacking (combined with XSS) | A05 Security Misconfiguration |
+| 6 | CORS misconfiguration | A05 Security Misconfiguration |
 
 ## Findings
 

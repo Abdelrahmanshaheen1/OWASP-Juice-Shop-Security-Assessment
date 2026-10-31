@@ -1,6 +1,15 @@
 # Server-Side Assessment
 
-Target: OWASP Juice Shop (local Docker instance). Six server-side findings spanning injection, broken access control, and authentication flaws.
+Target: OWASP Juice Shop (local Docker instance). Six server-side findings spanning injection, broken access control, and authentication flaws. See the [root README](../README.md) for scope and methodology.
+
+| # | Finding | Indicative OWASP Top 10 |
+|---|---|---|
+| 1 | SQL injection — authentication bypass | A03 Injection |
+| 2 | SQL injection — search endpoint (filter bypass) | A03 Injection |
+| 3 | Broken access control — IDOR on shopping basket | A01 Broken Access Control |
+| 4 | Broken access control — privilege escalation via registration | A01 Broken Access Control |
+| 5 | Missing rate limiting on login | A07 Identification and Authentication Failures |
+| 6 | Authentication bypass — JWT "none algorithm" forgery | A07 Identification and Authentication Failures |
 
 ## Findings
 
